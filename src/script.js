@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import gsap from 'gsap';
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -33,7 +34,16 @@ renderer.setSize(sizes.width, sizes.height)
 // let time = Date.now()
 
 // CLock
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
+
+// gsap (moves cube from center to right edge and back)
+for (let i = 1; i < 10; i++) {
+  if (i % 2 !== 0) {
+    gsap.to(mesh.position, { duration: 1, delay: i, x: 2 });
+  } else {
+    gsap.to(mesh.position, { duration: 1, delay: i, x: 0 });
+  }
+}
 
 // Animations
 const tick = () => {
@@ -46,12 +56,12 @@ const tick = () => {
   // mesh.rotation.y += 0.001 * deltaTime
 
   // CLock
-  const elapsedTime = clock.getElapsedTime()
-  console.log(elapsedTime)
-  // camera.rotation.x = elapsedTime// 1 revolution per second
-  camera.position.y = Math.sin(elapsedTime) // 1 revolution per second
-  camera.position.x = Math.cos(elapsedTime)
-  camera.lookAt(mesh.position)
+  // const elapsedTime = clock.getElapsedTime()
+  // console.log(elapsedTime)
+  // // camera.rotation.x = elapsedTime// 1 revolution per second
+  // camera.position.y = Math.sin(elapsedTime) // 1 revolution per second
+  // camera.position.x = Math.cos(elapsedTime)
+  // camera.lookAt(mesh.position)
   
 
   // Render
